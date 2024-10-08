@@ -7,6 +7,14 @@ const findAll = async () => {
     console.log(estudiantes);
 }
 
+const findByRut = async (rut) => {
+    const pool = conexion();
+    await pool.connect();
+    const estudiantes = await pool.query(`SELECT * FROM estudiante WHERE rut = '${rut}'`);
+    console.log(estudiantes);
+}
+
 module.exports = {
-    findAll
+    findAll,
+    findByRut
 }
