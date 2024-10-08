@@ -21,8 +21,24 @@ const insert = async (rut, nombre, curso, nivel) => {
     console.log(estudiantes);
 }
 
+const update = async (rut, nombre, curso, nivel) => {
+    const pool = conexion();
+    await pool.connect();
+    const estudiantes = await pool.query(`UPDATE estudiante SET nombre = '${nombre}', curso = '${curso}', nivel = ${nivel} WHERE rut = '${rut}'`);
+    console.log(estudiantes);
+}
+
+const deleteByRut = async (rut) => {
+    const pool = conexion();
+    await pool.connect();
+    const estudiantes = await pool.query(`DELETE FROM estudiante WHERE rut = '${rut}'`);
+    console.log(estudiantes);
+}
+
 module.exports = {
     findAll,
     findByRut,
-    insert
+    insert,
+    update,
+    deleteByRut
 }
