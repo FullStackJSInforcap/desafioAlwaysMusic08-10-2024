@@ -14,7 +14,15 @@ const findByRut = async (rut) => {
     console.log(estudiantes);
 }
 
+const insert = async (rut, nombre, curso, nivel) => {
+    const pool = conexion();
+    await pool.connect();
+    const estudiantes = await pool.query(`INSERT INTO estudiante(rut, nombre, curso, nivel) VALUES ('${rut}', '${nombre}', '${curso}', ${nivel})`);
+    console.log(estudiantes);
+}
+
 module.exports = {
     findAll,
-    findByRut
+    findByRut,
+    insert
 }
